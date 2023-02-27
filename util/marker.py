@@ -1,6 +1,5 @@
 class Marker:
     
-    
     def __init__(self, mapImage, validationData, bottomLeft, csResolution = (0.0002358, 0.0002576)):
         '''
         Parameters
@@ -48,7 +47,23 @@ class Marker:
                 except:
                     break
 
-
+    def get_fire_pixels(self):
+        res = []
+        for poi in self.__getPoints__():
+            p = self. __getPixel__(poi[0], poi[1])
+            if(poi[2]):
+                res.append((p[0], p[1]))
+        return res
+    
+   
+    def get_no_fire_pixels(self):
+        res = []
+        for poi in self.__getPoints__():
+            p = self. __getPixel__(poi[0], poi[1])
+            if(not poi[2]):
+                res.append((p[0], p[1]))
+        return res
+                
     def mark(self, offset, fire, noFire):
         '''
         Parameters
@@ -78,6 +93,7 @@ class Marker:
 # =============================================================================
 # from skimage import io
 # import pandas as pd
+# from util.marker import Marker
 # 
 # img = io.imread('data/2019-12-19/SWIR.tiff')
 # validation = pd.read_excel('data/2019-12-19/validation.xlsx')
