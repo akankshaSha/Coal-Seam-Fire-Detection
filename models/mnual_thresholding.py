@@ -5,6 +5,8 @@ import pandas as pd
 
 from util.marker import Marker
 
+# happiness is only real when shared
+
 
 #%% load images
 band8 = io.imread('data/2019-12-19/B8.tiff')
